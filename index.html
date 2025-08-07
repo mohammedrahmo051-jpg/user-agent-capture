@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Device Info Capture</title>
+</head>
+<body>
+  <h2>Loading device info...</h2>
+  <script>
+    const userAgent = navigator.userAgent;
+    document.body.innerHTML = `<h2>Your User-Agent:</h2><pre>${userAgent}</pre>`;
+    fetch('/api/log', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userAgent: userAgent, timestamp: new Date().toISOString() })
+    }).catch(console.error);
+  </script>
+</body>
+</html>
